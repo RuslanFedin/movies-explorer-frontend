@@ -1,0 +1,11 @@
+export const MAIN_PAGE_PATH = '/';
+export const REG_PAGE_PATH = '/signup';
+export const AUTH_PAGE_PATH = '/signin';
+export const USER_PAGE_PATH = '/profile';
+export const SAVED_MOVIES_PAGE_PATH = '/saved-movies';
+export const MOVIES_PAGE_PATH = '/movies';
+export const GITHUB_PAGE = 'https://github.com/RuslanFedin';
+export const YA_PRACTICUM_PAGE = 'https://practicum.yandex.ru/profile/web/';
+export const HOW_TO_LEARN = 'https://github.com/RuslanFedin/how-to-learn';
+export const RUSSIAN_TRAVEL = 'https://ruslanfedin.github.io/russian-travel';
+export const REACT_MESTO_API_FULL = 'https://github.com/RuslanFedin/react-mesto-api-full';

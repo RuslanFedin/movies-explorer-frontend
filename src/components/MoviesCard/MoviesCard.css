@@ -1,0 +1,95 @@
+.movies-card {
+  width: 364px;
+  height: 271px;
+  background-color: #FDFDFD;
+  box-shadow: 0 4px 30px rgba(0 , 0, 0, .08);
+  list-style: none;
+}
+
+.movies-card__header {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movies-card__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000;
+}
+
+.movie-card__time {
+  margin: 0;
+  padding-top: 9px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #A0A0A0;
+}
+
+.movie-card__button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #F9F9F9;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.movie-card__button:hover {
+  background-color: #2BE080;
+  opacity: .5;
+  transition: all 0.3s ease-in-out;
+}
+
+.movie-card__button_bookmark {
+  background-image: url('../../images/bookmarkIconDefault.svg');
+  background-size: 10px 13px;
+}
+
+.movie-card__button_bookmark:hover {
+  background-image: url('../../images/bookmarkIconActive.svg');
+}
+
+.movie-card__button_bookmark_active {
+  background-color: #2BE080;
+  background-image: url('../../images/bookmarkIconActive.svg');
+  transition: all 0.3s ease-in-out;
+}
+
+.movie-card__button_remove {
+  background-image: url('../../images/removeIconDefault.svg');
+  background-size: 8px 8px;
+}
+
+.movie-card__button_remove:hover{
+  background-image: url('../../images/removeIconHover.svg');
+}
+
+.movies-card__image {
+  width: 100%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card {
+    width: 339px;
+    height: 258px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .movies-card {
+    width: 300px;
+    height: 236px;
+  }
+}
