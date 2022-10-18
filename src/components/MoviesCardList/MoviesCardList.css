@@ -1,3 +1,8 @@
+.movie-card-list {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
 .movie-card-list__gallery {
   margin: 0;
   padding: 0;

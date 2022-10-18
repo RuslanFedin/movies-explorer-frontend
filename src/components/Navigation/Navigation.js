@@ -11,8 +11,9 @@ import {
 import React, { useState } from "react";
 import { NavLink } from 'react-router-dom';
 
-function Navigation({ theme, isOpenMenu, onCloseMenu }) {
+function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
   const [nav, setNav] = useState(true);
+
 
   return (
     <nav className={nav
