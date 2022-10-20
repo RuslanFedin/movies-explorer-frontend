@@ -1,9 +1,8 @@
 .movies-card {
-  width: 364px;
-  height: 271px;
   background-color: #FDFDFD;
   box-shadow: 0 4px 30px rgba(0 , 0, 0, .08);
   list-style: none;
+  line-height: 0;
 }
 
 .movies-card__header {
@@ -77,19 +76,4 @@
   object-fit: cover;
   background-position: center;
   background-size: cover;
-}
-
-@media screen and (max-width: 768px) {
-  .movies-card {
-    width: 339px;
-    height: 258px;
-  }
-
-}
-
-@media screen and (max-width: 320px) {
-  .movies-card {
-    width: 300px;
-    height: 236px;
-  }
 }

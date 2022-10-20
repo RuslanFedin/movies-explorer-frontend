@@ -6,7 +6,7 @@
   box-sizing: border-box;
   height: 72px;
   width: 100%;
-  border: solid 1.5px #aaa;
+  border: solid 1.5px rgba(170, 170, 170, .2);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -24,6 +24,18 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
+}
+
+.search-form__input::placeholder {
+  color: #A0A0A0;
+}
+
+.search-form__input::-moz-placeholder {
+  color: #A0A0A0;
+}
+
+.search-form__input::-webkit-input-placeholder {
+  color: #A0A0A0;
 }
 
 .search-form__button {

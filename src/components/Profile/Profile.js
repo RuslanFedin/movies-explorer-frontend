@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Profile() {
   return (
-    <section className='profile'>
+    <main className='profile'>
       <div className='profile__content'>
         <h1 className='profile__greeting'>Привет, Виталий!</h1>
         <div className='profile__datas'>
@@ -22,9 +22,9 @@ export default function Profile() {
 
         </div>
 
-        <button className='profile__button'>Редактировать</button>
-        <button className='profile__button profile__button_accent'>Выйти из аккаунта</button>
+        <button className='profile__button' type='submit'>Редактировать</button>
+        <button className='profile__button profile__button_accent' type='button'>Выйти из аккаунта</button>
       </div>
-    </section>
+    </main>
   )
 }

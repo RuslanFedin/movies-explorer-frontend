@@ -6,7 +6,7 @@
 .movie-card-list__gallery {
   margin: 0;
   padding: 0;
-  padding-top: 70px;
+  padding-top: 80px;
   padding-bottom: 30px;
   display: flex;
   flex-wrap: wrap;

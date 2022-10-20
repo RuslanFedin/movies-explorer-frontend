@@ -53,7 +53,7 @@ export default function Form({ type }) {
       <span className='form__label form__label_message'>{`Что-то пошло не так...`}</span>
       </div>
       <div>
-      <button className='form__button'>Зарегестрироваться</button>
+      <button className='form__button' type='submit'>Зарегестрироваться</button>
       <p className='form__text'>Уже зарегестрированы? <Link className='form__link' to={AUTH_PAGE_PATH}>Войти</Link></p>
       </div>
     </form>
@@ -88,7 +88,7 @@ export default function Form({ type }) {
         <span className='form__label form__label_message'>{ }</span>
       </div>
       <div className='form__submit'>
-      <button className='form__button'>Войти</button>
+      <button className='form__button' type='submit'>Войти</button>
       <p className='form__text'>Еще не зарегестрированы? <Link to={REG_PAGE_PATH}>Регистрация</Link></p>
       </div>
     </form>

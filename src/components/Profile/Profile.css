@@ -85,6 +85,14 @@
 
 }
 
+@media screen and (max-width: 440px) {
+  .profile__content {
+    padding-left: 30px;
+    padding-right: 30px;
+    width: auto;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .profile__content {
     padding-top: 72px;

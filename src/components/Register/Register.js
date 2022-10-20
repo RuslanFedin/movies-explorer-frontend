@@ -7,11 +7,11 @@ function Register( ) {
 
 
   return (
-    <section className="register">
+    <main className="register">
       <Form
         type='signup'
       />
-    </section>
+    </main>
   );
 }
 

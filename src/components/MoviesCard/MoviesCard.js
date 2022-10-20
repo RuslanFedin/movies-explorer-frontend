@@ -8,7 +8,7 @@ function MoviesCard({ title, time, pic, isUserList, isSaved }) {
   if (isUserList && isSaved)
   return (
     <li className="movies-card">
-      <article className="movies-card__article">
+      {/* <article className="movies-card__article"> */}
         <div className="movies-card__header">
           <div className='movies-card__intro'>
             <h2 className="movies-card__title">{title}</h2>
@@ -24,14 +24,14 @@ function MoviesCard({ title, time, pic, isUserList, isSaved }) {
           src={pic}
           alt={title}
         />
-      </article>
+      {/* </article> */}
     </li>
   );
 
   if (!isUserList)
   return (
     <li className="movies-card">
-      <article className="movies-card__article">
+      {/* <article className="movies-card__article"> */}
         <div className="movies-card__header">
           <div className='movies-card__intro'>
             <h2 className="movies-card__title">{title}</h2>
@@ -47,7 +47,7 @@ function MoviesCard({ title, time, pic, isUserList, isSaved }) {
           src={pic}
           alt={title}
         />
-      </article>
+      {/* </article> */}
     </li>
   );
 }

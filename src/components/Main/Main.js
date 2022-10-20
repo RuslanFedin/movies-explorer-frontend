@@ -10,13 +10,13 @@ import AboutMe from '../AboutMe/AboutMe';
 
 function Main() {
   return (
-    <div className='main'>
+    <main className='main'>
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
-    </div>
+    </main>
   );
 }
 

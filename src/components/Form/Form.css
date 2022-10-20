@@ -1,5 +1,7 @@
 .form {
   padding-top: 70px;
+  padding-left: 30px;
+  padding-right: 30px;
   width: 396px;
   height: 560px;
   position: relative;
@@ -64,7 +66,9 @@
 .form__submit {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 30px;
+  right: 30px;
+  /* width: 100%; */
 }
 
 .form__button {
@@ -118,7 +122,7 @@
 
   .form {
     padding-top: 56px;
-    width: 260px;
+    /* width: 260px; */
     height: 694px;
     display: flex;
     flex-wrap: wrap;

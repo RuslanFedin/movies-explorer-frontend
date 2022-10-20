@@ -8,7 +8,7 @@ import React from "react";
 function AboutMe() {
   return (
     <section className='about-me' id='about-me'>
-      <div className='main__content'>
+      <div className='main__content about-me__content'>
         <h2 className="main__subtitle">
           Студент
         </h2>
@@ -25,18 +25,32 @@ function AboutMe() {
           <h4 className='about-me__portfolio-title'>Портфолио</h4>
           <ul className='about-me__portfolio-list'>
             <li className='about-me__portfolio-item'>
-              <p className='about-me__portfolio-text'>Статичный сайт</p>
-              <a href={HOW_TO_LEARN} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a>
+              <a href={HOW_TO_LEARN} target="_blank" className='about-me__portfolio-link' rel="noreferrer">
+                <p className='about-me__portfolio-text'>Статичный сайт</p>
+                <img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/>
+              </a>
+              {/* <p className='about-me__portfolio-text'>Статичный сайт</p>
+              <a href={HOW_TO_LEARN} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a> */}
             </li>
-            <hr className='about-me__line' />
+            {/* <hr className='about-me__line' /> */}
             <li className='about-me__portfolio-item'>
-              <p className='about-me__portfolio-text'>Адаптивный сайт</p>
-              <a href={RUSSIAN_TRAVEL} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a>
+              <hr className='about-me__line' />
+              <a href={RUSSIAN_TRAVEL} target="_blank" className='about-me__portfolio-link' rel="noreferrer">
+                <p className='about-me__portfolio-text'>Адаптивный сайт</p>
+                <img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/>
+              </a>
+              {/* <p className='about-me__portfolio-text'>Адаптивный сайт</p>
+              <a href={RUSSIAN_TRAVEL} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a> */}
             </li>
-            <hr className='about-me__line' />
+            {/* <hr className='about-me__line' /> */}
             <li className='about-me__portfolio-item'>
-              <p className='about-me__portfolio-text'>Одностраничное приложение</p>
-              <a href={REACT_MESTO_API_FULL} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a>
+              <hr className='about-me__line' />
+              <a href={REACT_MESTO_API_FULL} target="_blank" className='about-me__portfolio-link' rel="noreferrer">
+                <p className='about-me__portfolio-text'>Одностраничное приложение</p>
+                <img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/>
+              </a>
+              {/* <p className='about-me__portfolio-text'>Одностраничное приложение</p>
+              <a href={REACT_MESTO_API_FULL} target="_blank" className='about-me__portfolio-link' rel="noreferrer"><img className='about-me__link-icon' src={arrowIcon} alt='ссылка на проект'/></a> */}
             </li>
           </ul>
         </div>
