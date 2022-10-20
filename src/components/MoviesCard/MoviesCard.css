@@ -1,4 +1,5 @@
 .movies-card {
+  width: 364px;
   background-color: #FDFDFD;
   box-shadow: 0 4px 30px rgba(0 , 0, 0, .08);
   list-style: none;
@@ -76,4 +77,16 @@
   object-fit: cover;
   background-position: center;
   background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card {
+    width: 339px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .movies-card {
+    width: 300px;
+  }
 }
