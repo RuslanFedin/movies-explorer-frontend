@@ -1,0 +1,51 @@
+.promo {
+  min-height: 524px;
+  background-color: #465DFF;
+  background-image: url('../../images/backgroundYaPractucumLogo.svg');
+  background-repeat: no-repeat;
+  background-size: 320px;
+  background-position-x: center;
+  background-position-y: 82px;
+
+}
+
+.promo__header {
+  margin: 0 auto;
+  max-width: 720px;
+  display: block;
+  position: relative;
+  top: 184px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    min-height: 784px;
+    background-position-y: 224px;
+  }
+
+  .promo__header {
+    top: 326px;
+  }
+
+}
+
+@media screen and (max-width:320px) {
+ .promo {
+  min-height: 570px;
+  background-position-y: 142px;
+  background-size: 248px;
+ }
+
+ .promo__header {
+    top: 207px;
+    font-size: 31px;
+    line-height: 39px;
+  }
+
+}

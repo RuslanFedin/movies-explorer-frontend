@@ -1,0 +1,164 @@
+.form {
+  padding-top: 70px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 396px;
+  height: 560px;
+  position: relative;
+}
+
+.form__greeting {
+  margin: 0;
+  padding-top: 38px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+}
+
+.form__input-container {
+  padding-top: 20px;
+}
+
+.form__input-container:first-of-type {
+  padding-top: 40px;
+}
+
+.form__label {
+  margin: 0;
+  padding-bottom: 10px;
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.form__label_message {
+  padding-top: 10px;
+  padding-bottom: 69px;
+  color: #EE3465;
+}
+
+.form__input {
+  margin: 0;
+  padding: 0 15px;
+  height: 46px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: none;
+  background-color: #F9F9F9;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  box-sizing: border-box;
+}
+
+.form__input:-webkit-autofill,
+.form__input:-webkit-autofill:hover,
+.form__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #F9F9F9 inset;
+}
+
+.form__submit {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  right: 30px;
+  /* width: 100%; */
+}
+
+.form__button {
+  height: 45px;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  background-color: #FF6838;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__button:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__text {
+  margin: 0;
+  padding-top: 16px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+}
+
+.form__link {
+  text-decoration: none;
+  color: #FF6838;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__link:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    padding-top: 232px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+
+  .form {
+    padding-top: 56px;
+    /* width: 260px; */
+    height: 694px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form__greeting {
+    padding-top: 50px;
+  }
+
+  .form__input-container {
+    width: 260px;
+  }
+
+  .form__input-container:first-of-type {
+    padding-top: 80px;
+  }
+
+  .form__label_message {
+    padding-bottom: 157px;
+  }
+
+  .form__button {
+    width: 260px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__text {
+    padding-top: 14px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__link {
+    padding-left: 5px;
+  }
+}

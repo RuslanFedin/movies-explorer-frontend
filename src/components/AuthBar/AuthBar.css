@@ -1,0 +1,50 @@
+.auth-bar__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  gap: 30px;
+}
+
+.auth-bar__link {
+  text-decoration: none;
+  color:#fff;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-bar__link:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-bar__link_major {
+  width: 76px;
+  height: 32px;
+  color: #000;
+  background-color: #2BE080;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+@media screen and (max-width:320px) {
+  .auth-bar__list {
+    gap: 14px;
+  }
+
+  .auth-bar__link {
+    font-size: 10px;
+  }
+
+  .auth-bar__link_major {
+    width: 54px;
+    height: 26px;
+  }
+}

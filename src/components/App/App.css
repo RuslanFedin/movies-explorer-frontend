@@ -1,0 +1,10 @@
+.app {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 320px;
+  height: 100vh;
+  background-color: #fff;
+  font-family: 'Inter', Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
