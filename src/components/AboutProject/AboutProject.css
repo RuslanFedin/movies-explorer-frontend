@@ -27,6 +27,7 @@
 
 .about-project__timeline {
   padding-top: 104px;
+  padding-bottom: 110px;
   display: flex;
   flex-wrap: nowrap;
 }
@@ -72,6 +73,7 @@
 
   .about-project__timeline {
     padding-top: 92px;
+    padding-bottom: 90px;
   }
 
   .about-project__backend {
@@ -104,6 +106,7 @@
 
   .about-project__timeline {
     padding-top: 60px;
+    padding-bottom: 70px;
   }
 
   .about-project__text {
@@ -123,3 +126,8 @@
 
 }
 
+@media screen and (max-width: 320px) {
+  .about-project__timeline {
+    padding-bottom: 0;
+  }
+}
