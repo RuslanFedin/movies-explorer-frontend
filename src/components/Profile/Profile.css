@@ -36,6 +36,17 @@
   color: #000;
 }
 
+.profile__input {
+  border: none;
+  outline: none;
+  text-align: end;
+  background: none;
+}
+
+.profile__input_error {
+  color: #FF004C;
+}
+
 .profile__line {
   margin: 0;
   margin-top: 16px;
@@ -54,6 +65,19 @@
   color: #000;
   margin-top: 220px;
   transition: all 0.3s ease-in-out;
+}
+
+.profile__button_save {
+  width: 410px;
+  height: 45px;
+  color: #fff;
+  background-color: #3456F3;
+  border-radius: 3px;
+}
+
+.profile__button_save:disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
 }
 
 .profile__button:hover {
@@ -78,6 +102,14 @@
   .profile__button {
     margin-top: 212px;
   }
+
+.profile__button_save {
+  width: 410px;
+  height: 45px;
+  background-color: #3456F3;
+  color: #fff;
+  border-radius: 3px;
+}
 
   .profile__button_accent {
     margin-top: 16px;

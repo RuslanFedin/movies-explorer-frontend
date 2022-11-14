@@ -3,6 +3,10 @@
   background-color: #FAFAFA;
 }
 
+.footer_hidden {
+  display: none;
+}
+
 .footer__content {
   margin: 0 auto;
   padding-left: 70px;

@@ -94,6 +94,12 @@
   transition: 0.2s;
 }
 
+.navigation__iconMenu_white,
+.navigation__iconMenu_white::before,
+.navigation__iconMenu_white::after {
+  background-color: #fff;
+}
+
 .navigation__iconMenu::before,
 .navigation__iconMenu::after {
   content: '';
@@ -174,6 +180,10 @@
     padding-bottom: 4px;
     font-size: 18px;
     line-height: 22px;
+  }
+
+  .navigation__link_light {
+    color: #000;
   }
 
   .navigation__link_active {

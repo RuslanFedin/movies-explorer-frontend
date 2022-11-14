@@ -2,14 +2,15 @@ import './Register.css';
 
 import Form from '../Form/Form';
 
-
-function Register( ) {
-
+function Register({ onRegister, errorMessage, setErrorMessage, successMessage }) {
 
   return (
     <main className="register">
       <Form
-        type='signup'
+        onRegister={onRegister}
+        errorMessage={errorMessage}
+        successMessage={successMessage}
+        setErrorMessage={setErrorMessage}
       />
     </main>
   );

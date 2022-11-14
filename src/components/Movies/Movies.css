@@ -3,6 +3,10 @@
   padding-right: 70px;
 }
 
+.movies__message {
+  text-align: center;
+}
+
 .movies__content {
   margin: 0 auto;
   max-width: 1140px;

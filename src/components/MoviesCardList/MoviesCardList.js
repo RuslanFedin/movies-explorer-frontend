@@ -1,115 +1,75 @@
 import './MoviesCardList.css';
 
-import React from "react";
+import React, { useState } from "react";
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { SCREEN_WIDTH, QTY_CARD } from '../../utils/constants.js';
 
-//Захардкодим карточки
-import moviePic from "../../images/pic__COLOR_pic.jpg";
-import moviePic2 from '../../images/pic__COLOR_pic2.jpg';
-import moviePic3 from '../../images/pic__COLOR_pic3.png';
-import moviePic4 from '../../images/pic__COLOR_pic4.jpg';
-import moviePic5 from '../../images/pic__COLOR_pic5.jpg';
-import moviePic6 from '../../images/pic__COLOR_pic6.jpg';
-import moviePic7 from '../../images/pic__COLOR_pic7.jpg';
-import moviePic8 from '../../images/pic__COLOR_pic8.jpg';
-import moviePic9 from '../../images/pic__COLOR_pic9.jpg';
-import moviePic10 from '../../images/pic__COLOR_pic10.jpg';
-import moviePic11 from '../../images/pic__COLOR_pic11.jpg';
-import moviePic12 from '../../images/pic__COLOR_pic12.jpg';
+function MoviesCardList({
+  foundMovies,
+  movies,
+  saveMovie,
+  unsaveMovie,
+  setInitiaSavedlMovies,
+}) {
 
-const moviesList = [
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic,
-    time: '1ч 47м',
-    isSaved: true,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic2,
-    time: '1ч 47м',
-    isSaved: true,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic3,
-    time: '1ч 47м',
-    isSaved: true,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic4,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic5,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic6,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic7,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic8,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic9,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic10,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic11,
-    time: '1ч 47м',
-    isSaved: false,
-  },
-  {
-    title: '33 слова о дизайне',
-    pic: moviePic12,
-    time: '1ч 47м',
-    isSaved: false,
-  },
+  const [count, setCount] = useState(getInitialCount());
+  const renderFoundMovies = foundMovies.slice(0, count);
 
+  function clickMore() {
+    setCount(count + getMore());
+  }
 
-];
+  function getMore() {
+    const screenWidth = getScreenWidth();
+    if (screenWidth <= SCREEN_WIDTH.MED)
+      return QTY_CARD.MORE_MED;
 
-function MoviesCardList({ isUserList }) {
+    if (screenWidth <= SCREEN_WIDTH.MIN)
+      return QTY_CARD.MORE_MIN;
+
+    return QTY_CARD.MORE_MAX;
+  }
+
+  function getInitialCount() {
+    const screenWidth = getScreenWidth();
+    if (screenWidth < SCREEN_WIDTH.MED)
+      return QTY_CARD.MED;
+
+    if (screenWidth < SCREEN_WIDTH.MIN)
+      return QTY_CARD.MIN
+
+    return QTY_CARD.MAX
+  }
+
+  function getScreenWidth() {
+    return Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+  }
+
   return (
     <section className='movie-card-list'>
       <ul className='movie-card-list__gallery'>
-        {moviesList.map((movie) => (
+        {renderFoundMovies.map((movie) => (
           <MoviesCard
-            title = {movie.title}
-            pic = {movie.pic}
-            time = {movie.time}
-            isSaved = {movie.isSaved}
-            isUserList={isUserList}
+            key = {movie.id || movie._id}
+            movie={movie}
+            movies={movies}
+            saveMovie={saveMovie}
+            unsaveMovie={unsaveMovie}
+            setInitiaSavedlMovies={setInitiaSavedlMovies}
           />
         ))}
       </ul>
       <div className='movie-card-list__more'>
-        <button className='movie-card-list__more-button'>Ещё</button>
+        {renderFoundMovies.length < foundMovies.length && (
+          <button
+            className='movie-card-list__more-button'
+            type='button'
+            onClick={clickMore}
+          > Ещё </button>
+        )}
       </div>
     </section>
   );
