@@ -4,13 +4,7 @@ import React, { useState } from "react";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { SCREEN_WIDTH, QTY_CARD } from '../../utils/constants.js';
 
-function MoviesCardList({
-  foundMovies,
-  movies,
-  saveMovie,
-  unsaveMovie,
-  setInitiaSavedlMovies,
-}) {
+function MoviesCardList({ foundMovies, movies, saveMovie, unsaveMovie, isSavedMovies = false }) {
 
   const [count, setCount] = useState(getInitialCount());
   const renderFoundMovies = foundMovies.slice(0, count);
@@ -55,10 +49,10 @@ function MoviesCardList({
           <MoviesCard
             key = {movie.id || movie._id}
             movie={movie}
+            isSavedMovies={isSavedMovies}
             movies={movies}
             saveMovie={saveMovie}
             unsaveMovie={unsaveMovie}
-            setInitiaSavedlMovies={setInitiaSavedlMovies}
           />
         ))}
       </ul>

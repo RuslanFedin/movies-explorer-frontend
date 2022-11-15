@@ -75,11 +75,7 @@ function App() {
     MainApi.getUserInfo(token)
     .then((res) => {
       setLoggedIn(true);
-      setCurrentUser({
-        email: res.user.email,
-        name: res.user.name,
-        _id: res.user._id
-      });
+      setCurrentUser(res);
       history.push(location.pathname);
     })
     .catch((err) => {
@@ -134,6 +130,11 @@ function App() {
     .catch ((err) => {
       console.log(`ERROR: ${err}`);
     });
+  }
+
+  // Проверить, сохраненный ли фильм
+  function checkIsSavedMovie(movie) {
+
   }
 
   // Регистрация
@@ -220,7 +221,6 @@ function App() {
       console.log(`ERROR: ${err}`);
     });
   };
-  
 
   return (
   <CurrentUserContext.Provider value={currentUser}>
@@ -281,7 +281,7 @@ function App() {
             onClick = {setNavShown}
           />
           <SavedMovies
-            movies={savedMovies}
+            savedMovies={savedMovies}
             unsaveMovie={unsaveMovie}
 
 
