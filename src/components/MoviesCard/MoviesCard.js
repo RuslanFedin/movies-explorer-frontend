@@ -3,26 +3,17 @@ import './MoviesCard.css';
 import React from 'react';
 import { MAIN_DB_URL, MOVIES_API_URL, PATHS } from '../../utils/constants';
 import { useLocation } from 'react-router-dom';
-import { useLocalStorage } from '../../customHooks/useLocalStorage';
 
 function MoviesCard({
   movie,
-  // movies,
-  // savedMovies,
+  savedMovies,
   saveMovie,
   unsaveMovie,
   }) {
 
   const location = useLocation();
 
-  const [savedMovies, setSavedMovies] = useLocalStorage('savedMovies', []);
-  // console.log(savedMoves);
-  // console.log(savedMovies);
-
-
-
   const isSavedMovie = savedMovies.some((item) => item.movieId === movie.id);
-    console.log(isSavedMovie);
 
   const saveButtonClass = isSavedMovie
     ? 'movie-card__button movie-card__button_bookmark  movie-card__button_bookmark_active'
@@ -30,9 +21,9 @@ function MoviesCard({
 
   function handleSaveMovie () {
     if (isSavedMovie) {
-      const thisMovie = savedMovies.filter((item) => item.movieId === movie.id);
+      const thisMovie = savedMovies.find((item) => item.movieId === movie.id);
       unsaveMovie(thisMovie);
-    } else if (!isSavedMovie) {
+    } else {
       saveMovie({
         country: movie.country,
         director: movie.director,
@@ -46,18 +37,9 @@ function MoviesCard({
         nameRU: `${movie.nameRU}`,
         nameEN: `${movie.nameEN}`,
       });
+
     }
   }
-
-  // function handleSaveMovie () {
-  //   if (isSavedMovie) {
-  //     unsaveMovie(
-  //       savedMovies.filter((item) => item.movieId === movie.id)[0]
-  //     );
-  //   } else {
-  //     saveMovie(movie);
-  //   }
-  // }
 
   function handleUnsaveMovie() {
     unsaveMovie(movie);

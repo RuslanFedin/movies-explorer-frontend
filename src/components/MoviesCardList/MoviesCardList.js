@@ -15,8 +15,6 @@ function MoviesCardList({
   const [count, setCount] = useState(getInitialCount());
   const renderFoundMovies = foundMovies.slice(0, count);
 
-  // console.log(savedMovies);
-
   function clickMore() {
     setCount(count + getMore());
   }

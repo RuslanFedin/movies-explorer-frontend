@@ -176,7 +176,7 @@ function App() {
         } else {
           setErrorMessage(ERROR_MESSAGE.LOGIN_DEFAULT);
         }
-        setIsLoading(false);
+        // setIsLoading(false);
       })
   };
 
@@ -197,10 +197,10 @@ function App() {
   }, [])
 
   // Сохранить фильм
-  function saveMovie(movie) {
-    MainApi.saveMovie(movie)
-    .then((res) => {
-      const refreshedSavedMovies = [...savedMovies, {...res, id: res.movieId}];
+  function saveMovie(_movie) {
+    MainApi.saveMovie(_movie)
+    .then(({ movie }) => {
+      const refreshedSavedMovies = [...savedMovies, {...movie, id: movie.movieId}];
       setSavedMovies(refreshedSavedMovies);
       localStorage.setItem('savedMovies', JSON.stringify(refreshedSavedMovies))
     })
@@ -212,7 +212,7 @@ function App() {
   // Удалить фильм
   function unsaveMovie(savedMovie) {
     MainApi.unsaveMovie(savedMovie._id)
-    .then((res) => {
+    .then(() => {
       const refreshedSavedMovies = savedMovies.filter((item) => item._id !== savedMovie._id);
       setSavedMovies(refreshedSavedMovies);
       localStorage.setItem('savedMovies', JSON.stringify(refreshedSavedMovies));

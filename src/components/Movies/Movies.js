@@ -10,7 +10,6 @@ import { filterShortMovies } from '../../utils/filterShortMovies';
 
 
 function Movies({
-  movies,
   savedMovies,
   saveMovie,
   unsaveMovie }) {
@@ -18,8 +17,6 @@ function Movies({
   const [foundMovies, setFoundMovies] = useLocalStorage('foundMovies', []);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState ('');
-  // // console.log(savedMovies._id);
-  // console.log(movies.id);
 
   useEffect(() => {
     setFoundMovies(foundMovies);
@@ -29,7 +26,7 @@ function Movies({
     setIsLoading(true);
     setErrorMessage('');
     searchMovies(request, isShort);
-    setIsLoading(false);
+    setTimeout(() => setIsLoading(false), 10000);
   }
 
   function searchMovies (request, isShort) {
@@ -73,7 +70,7 @@ function Movies({
               <MoviesCardList
                 foundMovies={foundMovies}
                 movies={foundMovies}
-                savedMoves={savedMovies}
+                savedMovies={savedMovies}
                 saveMovie={saveMovie}
                 unsaveMovie={unsaveMovie}
               />
