@@ -3,27 +3,34 @@ import './MoviesCard.css';
 import React from 'react';
 import { MAIN_DB_URL, MOVIES_API_URL, PATHS } from '../../utils/constants';
 import { useLocation } from 'react-router-dom';
-import SavedMovies from '../SavedMovies/SavedMovies';
+import { useLocalStorage } from '../../customHooks/useLocalStorage';
 
 function MoviesCard({
   movie,
-  movies,
+  // movies,
+  // savedMovies,
   saveMovie,
   unsaveMovie,
   }) {
 
   const location = useLocation();
 
-  const isSavedMovie = movies.some((item) => item.movieId === movie.id);
+  const [savedMovies, setSavedMovies] = useLocalStorage('savedMovies', []);
+  // console.log(savedMoves);
+  // console.log(savedMovies);
 
+
+
+  const isSavedMovie = savedMovies.some((item) => item.movieId === movie.id);
+    console.log(isSavedMovie);
 
   const saveButtonClass = isSavedMovie
-    ? 'movie-card__button movie-card__button_bookmark'
-    : 'movie-card__button';
+    ? 'movie-card__button movie-card__button_bookmark  movie-card__button_bookmark_active'
+    : 'movie-card__button movie-card__button_bookmark';
 
   function handleSaveMovie () {
     if (isSavedMovie) {
-      const thisMovie = movies.find((item) => item.movieId === movie.id);
+      const thisMovie = savedMovies.filter((item) => item.movieId === movie.id);
       unsaveMovie(thisMovie);
     } else if (!isSavedMovie) {
       saveMovie({
@@ -32,16 +39,25 @@ function MoviesCard({
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${MOVIES_API_URL}${movie.image.url}`,
+        image: `${MAIN_DB_URL}${movie.image.url}`,
         trailerLink: movie.trailerLink,
         thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
         movieId: `${movie.id}`,
         nameRU: `${movie.nameRU}`,
         nameEN: `${movie.nameEN}`,
-        isSavedMovie: true,
       });
     }
   }
+
+  // function handleSaveMovie () {
+  //   if (isSavedMovie) {
+  //     unsaveMovie(
+  //       savedMovies.filter((item) => item.movieId === movie.id)[0]
+  //     );
+  //   } else {
+  //     saveMovie(movie);
+  //   }
+  // }
 
   function handleUnsaveMovie() {
     unsaveMovie(movie);
@@ -65,7 +81,8 @@ function MoviesCard({
             <button
               className={saveButtonClass}
               type='button'
-              onClick={handleSaveMovie}>
+              onClick={handleSaveMovie}
+              >
             </button> : ''
           }
           {

@@ -63,7 +63,7 @@ function App() {
     }
     return;
 
-  }, [loggedIn, history]);
+  }, [loggedIn]);
 
   // Закрыть меню
   function closeNav() {
@@ -110,7 +110,7 @@ function App() {
     .then((res) => {
       setSavedMovies(
         res.movie.map((savedMovie) => ({
-          id: savedMovie._id,
+          _id: savedMovie._id,
           movieId: savedMovie.movieId,
           country: savedMovie.country,
           image: savedMovie.image,

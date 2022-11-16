@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 import { SEARCH_OPTIONS } from '../../utils/constants';
 
-function SearchForm({ searchSubmit, setSearch }) {
+function SearchForm({ searchSubmit }) {
 
   const [request, setRequest] = useState('');
   const [isShort, setIsShort] = useState(false);
@@ -36,7 +36,6 @@ function SearchForm({ searchSubmit, setSearch }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(39);
     if (!request) {
       setErrorMessage(SEARCH_OPTIONS.SEARCH_ERROR);
       return;

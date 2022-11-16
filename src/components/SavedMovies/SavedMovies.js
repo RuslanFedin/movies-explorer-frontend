@@ -23,39 +23,24 @@ function SavedMovies({
     setFoundMovies(savedMovies);
   }, [savedMovies]);
 
-  function handleSearchSubmit(request, isShort) {
+  function searchSubmit(request, isShort) {
     setIsLoading(true);
     setFoundMovies(filterShortMovies(savedMovies, request, isShort));
     setIsLoading(false);
   }
 
-  function resetSearch() {
-    return {
-      request: '',
-      isShort: '',
-    };
-  }
-
   return (
     <main className='movies'>
       <SearchForm
-        handleSearch={handleSearchSubmit}
-        resetSearch={resetSearch}
+        searchSubmit={searchSubmit}
       />
-      {
-        isLoading ? (
-        <Preloader />
-        ) : foundMovies.length === 0 ? (
-          <span>{SEARCH_ERROR.NOT_FOUND}</span>
-        ) : (
-          <MoviesCardList
+      <MoviesCardList
+            foundMovies={foundMovies}
             movies={foundMovies}
-            savedMovies={savedMovies}
             saveMovie={saveMovie}
+            savedMovies={savedMovies}
             unsaveMovie={unsaveMovie}
-            isSavedMovie
-          />
-      )}
+            />
     </main>
   )
 
