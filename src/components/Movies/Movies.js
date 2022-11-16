@@ -8,14 +8,15 @@ import { SEARCH_ERROR } from '../../utils/constants';
 import { useLocalStorage } from '../../customHooks/useLocalStorage';
 import { filterShortMovies } from '../../utils/filterShortMovies';
 
-
 function Movies({
   savedMovies,
   saveMovie,
-  unsaveMovie }) {
+  unsaveMovie,
+  isLoading,
+  getAllMovies
+  }) {
 
   const [foundMovies, setFoundMovies] = useLocalStorage('foundMovies', []);
-  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState ('');
 
   useEffect(() => {
@@ -23,10 +24,9 @@ function Movies({
   },[foundMovies, setFoundMovies]);
 
   function searchSubmit (request, isShort) {
-    setIsLoading(true);
+    getAllMovies();
     setErrorMessage('');
     searchMovies(request, isShort);
-    setTimeout(() => setIsLoading(false), 10000);
   }
 
   function searchMovies (request, isShort) {
@@ -35,7 +35,6 @@ function Movies({
     if (movies) {
       const allMovies = JSON.parse(movies);
       setFoundMovies(filterFoundMovies(allMovies, request, isShort));
-      setIsLoading(false);
       return;
     }
   }
@@ -57,6 +56,7 @@ function Movies({
       <SearchForm
         searchSubmit={searchSubmit}
       />
+
       {localStorage.getItem('request') &&
         (errorMessage
           ? (<p className='movies__error-message'>{errorMessage}</p>)

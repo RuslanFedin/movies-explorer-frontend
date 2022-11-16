@@ -2,12 +2,10 @@ import './SavedMovies.css';
 
 import React, { useEffect, useState } from "react";
 import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { SEARCH_ERROR } from '../../utils/constants';
 import { filterShortMovies } from '../../utils/filterShortMovies';
-import { useLocalStorage } from '../../customHooks/useLocalStorage';
 import { saveMovie } from '../../utils/MainApi';
+import { SEARCH_ERROR } from '../../utils/constants';
 
 function SavedMovies({
   savedMovies,
@@ -29,13 +27,20 @@ function SavedMovies({
       <SearchForm
         searchSubmit={searchSubmit}
       />
-      <MoviesCardList
+      {
+        foundMovies.length === 0 ?
+        (<p className='movies__error-message'>{SEARCH_ERROR.REQUEST_ERROR}</p>) :
+        (
+          <MoviesCardList
             foundMovies={foundMovies}
             movies={foundMovies}
             saveMovie={saveMovie}
             savedMovies={savedMovies}
             unsaveMovie={unsaveMovie}
-            />
+          />
+        )
+      }
+
     </main>
   )
 }

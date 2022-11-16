@@ -94,6 +94,7 @@ function App() {
 
   // Получить все фиьмы из БД
   function getAllMovies() {
+    setIsLoading(true);
     return MoviesApi.getAllMovies()
       .then((res) => {
         localStorage.setItem('movies', JSON.stringify(res));
@@ -101,6 +102,9 @@ function App() {
       })
       .catch ((err) => {
         console.log(`ERROR: ${err}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -130,11 +134,6 @@ function App() {
     .catch ((err) => {
       console.log(`ERROR: ${err}`);
     });
-  }
-
-  // Проверить, сохраненный ли фильм
-  function checkIsSavedMovie(movie) {
-
   }
 
   // Регистрация
@@ -269,6 +268,8 @@ function App() {
             savedMovies={savedMovies}
             saveMovie={saveMovie}
             unsaveMovie={unsaveMovie}
+            isLoading={isLoading}
+            getAllMovies={getAllMovies}
           />
           <Footer />
         </ProtectedRoute>
@@ -283,6 +284,7 @@ function App() {
           <SavedMovies
             savedMovies={savedMovies}
             unsaveMovie={unsaveMovie}
+            getAllMovies={getAllMovies}
 
 
             // getSavedMovies={getSavedMovies}
