@@ -1,51 +1,95 @@
 import './Profile.css';
 
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import FormValidity from '../../utils/FormValidity';
+import { useLocation } from 'react-router-dom';
+import { PATHS } from '../../utils/constants'
 
-export default function Profile({ onSignOut, updateUseInfo, message}) {
-
-  const  { value, setValue, error, isValid, handleError } = FormValidity();
-  const inputRef = useRef();
+export default function Profile({ onSignOut, updateUserInfo }) {
   const currentUser = useContext(CurrentUserContext);
+  const location = useLocation();
+  const  { error, isValid, setIsValid, handleValidity } = FormValidity();
 
-  const [isEdit, setIsEdit] = useState(false);
+  const [isInputDisabled, setIsInputDisabled] = useState(true);
+  const [isInputValid, setIsInputValid] = useState(true);
+  const [value, setValue] = useState({});
 
-  function handleTooggleButton() {
-    setIsEdit(!isEdit);
+  useEffect(() => {
+    if (location.pathname === PATHS.USER_PAGE) {
+      setValue(currentUser);
+    }
+  }, [location]);
+
+  function handleInput() {
+    setIsInputDisabled(false);
+    setIsValid(false);
   }
 
-  function onSubmit(e) {
+  function handleInputValue(e) {
+    setValue({ ...value, [e.target.name]: e.target.value });
+    console.log(e.target.checkValidity());
+    if (e.target.checkValidity()) {
+      console.log(true)
+      // setIsInputValid(true);
+    }
+    else {
+      setIsInputValid(false);
+      // console.log(false);
+    }
+  }
+
+  useEffect(() => {
+    if (value.name === currentUser.name && value.email === currentUser.email) {
+      setIsValid(false);
+    }
+  }, [value]);
+
+  function handleSubmit(e) {
+    console.log(49);
     e.preventDefault();
-    updateUseInfo(e, value.name || currentUser.user.name, value.email || currentUser.user.email);
-    console.log(currentUser.user.name);
-    setIsEdit(false);
-
+    setIsInputDisabled(true);
+    updateUserInfo({ name: value.name, email: value.email });
   }
+
+  // function handleCancel() {
+  //   setValue(currentUser);
+  //   setError({});
+  //   setIsInputValid(true);
+  //   setIsInputDisabled(true);
+  // }
+
+  function handleFocus(e) {
+    e.target.select();
+  }
+
+
 
   return (
     <main className='profile'>
       <div className='profile__content'>
-        <h1 className='profile__greeting'>Привет, {currentUser.user.name}</h1>
+        <h1 className='profile__greeting'>Привет, {currentUser.name}</h1>
         <form
           className='profile__datas'
-          onSubmit={onSubmit}
+          onChange={handleValidity}
+          onSubmit={handleSubmit}
         >
           <div className='profile__stroke'>
             <label className='profile__text' htmlFor='name'>Имя</label>
             <input
-              className={'profile__text profile__input'}
+              className={`profile__text profile__input`}
               id='name'
               name='name'
-              defaultValue={currentUser.user.name}
-              onChange={handleError}
+              defaultValue={currentUser.name}
+              onChange={handleInputValue}
               autoComplete='off'
-              ref={inputRef}
+              onFocus={handleFocus}
               minLength='2'
               maxLength='30'
-              disabled={!isEdit}
+              disabled={isInputDisabled}
               type='text'
+              // pattern=
+              value={value.name}
             ></input>
           </div>
 
@@ -54,44 +98,39 @@ export default function Profile({ onSignOut, updateUseInfo, message}) {
           <div className='profile__stroke'>
             <label className='profile__text' htmlFor='email'>E-mail</label>
             <input
-              className={'profile__text profile__input' + (isEdit ? ' profile__input_active' : '')}
+              className={`profile__text profile__input`}
               id='email'
               name='email'
-              defaultValue={currentUser.user.email}
-              onChange={handleError}
+              defaultValue={currentUser.email}
+              onChange={handleInputValue}
               autoComplete='off'
-              ref={inputRef}
-              disabled={!isEdit}
+              disabled={isInputDisabled}
               type='email'
+              value={value.email}
             ></input>
           </div>
 
         </form>
+        <span className='profile__input_error'>{(error.username || '') + ' ' + (error.email || '')}</span>
 
-        {!isEdit
+        <button
+          className={`profile__button ${isInputDisabled ? '' : 'profile__button_hidden'}`}
+          type='button'
+          onClick={ handleInput }
+        >Редактировать</button>
 
-          ? <button
-              className={'profile__button'}
-              type='button'
-              onClick={handleTooggleButton}
-            >Редактировать</button>
+        <button
+          className={`profile__button profile__button_save ${isInputDisabled ? 'profile__button_hidden' : ''}`}
+          type='submit'
+          form='profile__content'
+          disabled={!isValid}
+        >Сохранить</button>
 
-          : <button
-              className={'profile__button profile__button_save' + (!isValid ? ' profile__button profile__button_save_disabled' : '')}
-              type='submit'
-              onClick={onSubmit}
-              disabled={!isValid}
-            >Сохранить</button>
-        }
-        {!isEdit
-
-          ? <button
-              className='profile__button profile__button_accent'
-              type='button'
-              onClick={() => onSignOut()}
-            >Выйти из аккаунта</button>
-        : ''
-        }
+        <button
+          className={`profile__button profile__button_accent ${isInputDisabled ? '' : 'profile__button_hidden'}`}
+          type='button'
+          onClick={() => onSignOut(currentUser.email)}
+        >Выйти из аккаунта</button>
 
       </div>
     </main>

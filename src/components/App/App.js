@@ -41,6 +41,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
 
+
   const [savedMovies, setSavedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
@@ -73,9 +74,9 @@ function App() {
   // Получение данных пользователя
   function getUserInfo (token) {
     MainApi.getUserInfo(token)
-    .then((res) => {
+    .then(({ user }) => {
       setLoggedIn(true);
-      setCurrentUser(res);
+      setCurrentUser(user);
       history.push(location.pathname);
     })
     .catch((err) => {
@@ -89,7 +90,9 @@ function App() {
 
   // Обновление данных пользователя
   function updateUserInfo(data) {
+    console.log(93);
     setCurrentUser(data);
+    console.log(currentUser);
   };
 
   // Получить все фиьмы из БД
@@ -285,30 +288,15 @@ function App() {
             savedMovies={savedMovies}
             unsaveMovie={unsaveMovie}
             getAllMovies={getAllMovies}
-
-
-            // getSavedMovies={getSavedMovies}
-            // savedMoviesCards={savedMoviesCards}
-            // foundSavedMoviesCards={foundSavedMoviesCards}
-            // unsaveMovies={unsaveMovies}
-            // searchMovie={searchMovie}
-            // isShort={isShort}
-            // setIsShort={setIsShort}
-            // isFound={isFound}
-            // setIsFound={setIsFound}
-            // searchMessage={searchMessage}
-            // setSearchMessage={setSearchMessage}
-            // isLoading={isLoading}
-            // message={message}
           />
           <Footer />
         </ProtectedRoute>
 
         <ProtectedRoute exact = {true} path = { PATHS.USER_PAGE } loggedIn={loggedIn}>
           <Profile
-            getUserInfo={getUserInfo}
+            // getUserInfo={getUserInfo}
             onSignOut={onSignOut}
-            updateUseInfo={updateUserInfo}
+            updateUserInfo={updateUserInfo}
             // message={message}
           />
         </ProtectedRoute>

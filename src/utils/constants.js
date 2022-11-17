@@ -53,19 +53,19 @@ export const ERROR_MESSAGE = {
 
 // Размеры экрана
 export const SCREEN_WIDTH = {
-  MAX: 1920,
-  MED: 1279,
-  MIN: 891
+  MAX: 1280,
+  MED: 768,
+  MIN: 480
 }
 
 // Отображаемое количество карточек и подгружаемое количество карточек
 export const QTY_CARD = {
   MAX: 12,
   MED: 8,
-  MIN: 3,
+  MIN: 5,
   MORE_MAX: 3,
   MORE_MED: 2,
-  MORE_MIN: 1
+  MORE_MIN: 2
 }
 
 export const NAME_REGEX = /^[a-zа-я/s-]{2,30}$/i;
