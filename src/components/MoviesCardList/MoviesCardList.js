@@ -53,7 +53,7 @@ function MoviesCardList({
       <ul className='movie-card-list__gallery'>
         {renderFoundMovies.map((movie) => (
           <MoviesCard
-            key = {movie.id || movie.movieId}
+            key = {movie.id || movie._id}
             movie={movie}
             movies={movies}
             savedMovies={savedMovies}

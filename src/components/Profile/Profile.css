@@ -44,7 +44,16 @@
 }
 
 .profile__input_error {
+  position: relative;
+  top: 30px;
+  text-align: center;
   color: #FF004C;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.profile__input_success-message {
+  color: #2BE080;
 }
 
 .profile__line {

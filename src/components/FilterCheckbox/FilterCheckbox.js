@@ -2,18 +2,22 @@ import './FilterCheckbox.css';
 
 import React, { useEffect, useState } from "react";
 
-function FilterCheckbox({ onChange }) {
+function FilterCheckbox({ onChange, isShort }) {
 
-  const [checked, setChecked] = useState(false);
+  const isShortToBoolean = isShort === 'true' ? true : false;
+
+  const [checked, setChecked] = useState(isShortToBoolean);
 
   useEffect(() => {
-    setChecked(checked);
-  }, [checked]);
+    setChecked(isShortToBoolean)
+  }, [isShortToBoolean]);
 
   function handleCheckboxChange(e) {
     onChange(e.target.checked);
     setChecked(e.target.checked);
   }
+
+  console.log(isShort, isShortToBoolean, checked)
 
   return (
     <div className='filter-checkbox'>

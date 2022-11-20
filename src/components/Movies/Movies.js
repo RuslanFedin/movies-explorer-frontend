@@ -13,6 +13,7 @@ function Movies({
   saveMovie,
   unsaveMovie,
   isLoading,
+  setIsLoading,
   getAllMovies
   }) {
 
@@ -24,9 +25,10 @@ function Movies({
   },[foundMovies, setFoundMovies]);
 
   function searchSubmit (request, isShort) {
-    getAllMovies();
+    setIsLoading(true)
     setErrorMessage('');
     searchMovies(request, isShort);
+    setTimeout(() => setIsLoading(false), 200);
   }
 
   function searchMovies (request, isShort) {

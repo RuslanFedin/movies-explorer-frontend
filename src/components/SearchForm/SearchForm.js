@@ -3,22 +3,28 @@ import './SearchForm.css';
 import React, { useEffect, useState } from "react";
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-import { SEARCH_OPTIONS } from '../../utils/constants';
+import { PATHS,SEARCH_OPTIONS } from '../../utils/constants';
+import { useLocation } from 'react-router-dom';
 
 function SearchForm({ searchSubmit }) {
+
+  const location = useLocation();
 
   const [request, setRequest] = useState('');
   const [isShort, setIsShort] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    setIsShort(isShort);
-  }, [isShort]);
+    setRequest(localStorage.getItem('request') || '');
+    setIsShort(localStorage.getItem('isShort') || false);
+  }, []);
 
   useEffect(() => {
-    setRequest(request);
-  }, [request]);
-
+    if (location.pathname === PATHS.SAVED_MOVIES) {
+      setRequest('');
+      setIsShort(false);
+    }
+  }, [location]);
 
   function handleRequestChange(e) {
     setRequest(e.target.value);
@@ -74,6 +80,7 @@ function SearchForm({ searchSubmit }) {
 
         <FilterCheckbox
           onChange={handleShortChange}
+          isShort={isShort}
         />
         <hr className='search-form__underline'/>
       </div>

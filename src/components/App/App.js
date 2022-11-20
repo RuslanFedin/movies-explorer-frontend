@@ -19,18 +19,10 @@ import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 
 import {
-  // MAIN_PAGE_PATH,
-  // REG_PAGE_PATH,
-  // AUTH_PAGE_PATH,
-  // USER_PAGE_PATH,
-  // SAVED_MOVIES_PAGE_PATH,
-  // MOVIES_PAGE_PATH,
-  // NOT_FOUND_PAGE_PATH,
   PATHS,
   RESPONSE_CODE,
   ERROR_MESSAGE,
-  ShortDuration } from '../../utils/constants';
-import { get } from 'react-hook-form';
+} from '../../utils/constants';
 
 function App() {
   const history = useHistory();
@@ -44,20 +36,15 @@ function App() {
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [movies, setMovies] = useState([]);
-  const [foundMovies, setFoundMovies] = useState([]);
-  const [renderedMovies, setRenderedMovies] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-
-  // Проверка токена
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (!token) {return}
-    if (token) {
-
+    if (!token) {onSignOut()}
+    else if (token) {
       getUserInfo (token);
       getAllMovies();
       getSavedMovies();
@@ -66,12 +53,10 @@ function App() {
 
   }, [loggedIn]);
 
-  // Закрыть меню
   function closeNav() {
     setNavShown(false);
   };
 
-  // Получение данных пользователя
   function getUserInfo (token) {
     MainApi.getUserInfo(token)
     .then(({ user }) => {
@@ -86,18 +71,18 @@ function App() {
     });
   };
 
-
-
-  // Обновление данных пользователя
-  function updateUserInfo(data) {
-    console.log(93);
-    setCurrentUser(data);
+  function updateUserInfo({name, email}) {
+    MainApi.updateUserInfo(name, email)
+    .then(({ user }) => {
+      setCurrentUser(user);
+    })
+    .catch((err) => {
+      console.log(`ERROR: ${err}`);
+    });
     console.log(currentUser);
   };
 
-  // Получить все фиьмы из БД
   function getAllMovies() {
-    setIsLoading(true);
     return MoviesApi.getAllMovies()
       .then((res) => {
         localStorage.setItem('movies', JSON.stringify(res));
@@ -106,12 +91,8 @@ function App() {
       .catch ((err) => {
         console.log(`ERROR: ${err}`);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
-  // Получить сохраненные фильмы из БД
   function getSavedMovies() {
     MainApi.getSavedMovies()
     .then((res) => {
@@ -139,7 +120,6 @@ function App() {
     });
   }
 
-  // Регистрация
   function onRegister({ email, password, name }) {
     setErrorMessage('');
     MainApi.register(email, password, name)
@@ -161,7 +141,6 @@ function App() {
       })
   };
 
-  // Вход
   function onLogin ({ email, password }) {
     setErrorMessage('');
     MainApi.authorize(email, password)
@@ -178,27 +157,17 @@ function App() {
         } else {
           setErrorMessage(ERROR_MESSAGE.LOGIN_DEFAULT);
         }
-        // setIsLoading(false);
       })
   };
 
-  // Выход
   function onSignOut() {
     localStorage.clear();
     setCurrentUser({});
     setLoggedIn(false);
+    setSavedMovies([]);
     history.push(PATHS.MAIN_PAGE);
   };
 
-  //Сбросить найденные фильмы и запрос при обновлении страницы
-  useEffect(() =>{
-    if (performance.navigation.type === 1) {
-      localStorage.removeItem('foundMovies');
-      localStorage.removeItem('request');
-    }
-  }, [])
-
-  // Сохранить фильм
   function saveMovie(_movie) {
     MainApi.saveMovie(_movie)
     .then(({ movie }) => {
@@ -211,7 +180,6 @@ function App() {
     });
   };
 
-  // Удалить фильм
   function unsaveMovie(savedMovie) {
     MainApi.unsaveMovie(savedMovie._id)
     .then(() => {
@@ -231,6 +199,7 @@ function App() {
 
         <Route exact={true} path={PATHS.REGISTRATION}>
           <Register
+            loggedIn={loggedIn}
             onRegister={onRegister}
             errorMessage={errorMessage}
             successMessage={successMessage}
@@ -240,6 +209,7 @@ function App() {
 
         <Route exact={true} path={PATHS.AUTHORIZATION}>
           <Login
+            loggedIn={loggedIn}
             onLogin={onLogin}
             errorMessage={errorMessage}
             successMessage={successMessage}
@@ -268,10 +238,12 @@ function App() {
           />
           <Movies
             movies={movies}
+            setMovies={setMovies}
             savedMovies={savedMovies}
             saveMovie={saveMovie}
             unsaveMovie={unsaveMovie}
             isLoading={isLoading}
+            setIsLoading={setIsLoading}
             getAllMovies={getAllMovies}
           />
           <Footer />
@@ -293,11 +265,15 @@ function App() {
         </ProtectedRoute>
 
         <ProtectedRoute exact = {true} path = { PATHS.USER_PAGE } loggedIn={loggedIn}>
+          <Header
+            loggedIn = {loggedIn}
+            navShown = {navShown}
+            closeNav = {closeNav}
+            onClick = {setNavShown}
+          />
           <Profile
-            // getUserInfo={getUserInfo}
             onSignOut={onSignOut}
             updateUserInfo={updateUserInfo}
-            // message={message}
           />
         </ProtectedRoute>
 

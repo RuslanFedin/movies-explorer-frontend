@@ -14,6 +14,7 @@ export default function Profile({ onSignOut, updateUserInfo }) {
   const [isInputDisabled, setIsInputDisabled] = useState(true);
   const [isInputValid, setIsInputValid] = useState(true);
   const [value, setValue] = useState({});
+  const [isSuccessful, setIsSuccesful] = useState(false);
 
   useEffect(() => {
     if (location.pathname === PATHS.USER_PAGE) {
@@ -28,14 +29,11 @@ export default function Profile({ onSignOut, updateUserInfo }) {
 
   function handleInputValue(e) {
     setValue({ ...value, [e.target.name]: e.target.value });
-    console.log(e.target.checkValidity());
     if (e.target.checkValidity()) {
-      console.log(true)
-      // setIsInputValid(true);
+      setIsInputValid(true);
     }
     else {
       setIsInputValid(false);
-      // console.log(false);
     }
   }
 
@@ -46,24 +44,12 @@ export default function Profile({ onSignOut, updateUserInfo }) {
   }, [value]);
 
   function handleSubmit(e) {
-    console.log(49);
     e.preventDefault();
     setIsInputDisabled(true);
     updateUserInfo({ name: value.name, email: value.email });
+    setIsSuccesful(true);
+    setTimeout(() => setIsSuccesful(false), 1000);
   }
-
-  // function handleCancel() {
-  //   setValue(currentUser);
-  //   setError({});
-  //   setIsInputValid(true);
-  //   setIsInputDisabled(true);
-  // }
-
-  function handleFocus(e) {
-    e.target.select();
-  }
-
-
 
   return (
     <main className='profile'>
@@ -83,13 +69,11 @@ export default function Profile({ onSignOut, updateUserInfo }) {
               defaultValue={currentUser.name}
               onChange={handleInputValue}
               autoComplete='off'
-              onFocus={handleFocus}
               minLength='2'
               maxLength='30'
               disabled={isInputDisabled}
               type='text'
-              // pattern=
-              value={value.name}
+              pattern='[а-яА-Яa-zA-ZёË\- ]{1,}'
             ></input>
           </div>
 
@@ -106,25 +90,28 @@ export default function Profile({ onSignOut, updateUserInfo }) {
               autoComplete='off'
               disabled={isInputDisabled}
               type='email'
-              value={value.email}
             ></input>
           </div>
 
+          <span className='profile__input_error'>{(error.username || '') + ' ' + (error.email || '')}</span>
+          { isSuccessful === true ?
+            <span className='profile__input_error profile__input_success-message'>Данные успешно изменены</span> : ''
+          }
+
+          <button
+            className={`profile__button profile__button_save ${isInputDisabled ? 'profile__button_hidden' : ''}`}
+            type='submit'
+            disabled={!isValid}
+          >Сохранить
+          </button>
+
         </form>
-        <span className='profile__input_error'>{(error.username || '') + ' ' + (error.email || '')}</span>
 
         <button
           className={`profile__button ${isInputDisabled ? '' : 'profile__button_hidden'}`}
           type='button'
           onClick={ handleInput }
         >Редактировать</button>
-
-        <button
-          className={`profile__button profile__button_save ${isInputDisabled ? 'profile__button_hidden' : ''}`}
-          type='submit'
-          form='profile__content'
-          disabled={!isValid}
-        >Сохранить</button>
 
         <button
           className={`profile__button profile__button_accent ${isInputDisabled ? '' : 'profile__button_hidden'}`}
