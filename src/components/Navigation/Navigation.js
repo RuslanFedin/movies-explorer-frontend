@@ -2,18 +2,15 @@ import './Navigation.css';
 import userIcon from '../../images/userIcon.svg';
 
 import {
-    MAIN_PAGE_PATH,
-    MOVIES_PAGE_PATH,
-    SAVED_MOVIES_PAGE_PATH,
-    USER_PAGE_PATH,
+    PATHS
   } from '../../utils/constants';
 
 import React, { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
+function Navigation({ }) {
   const [nav, setNav] = useState(true);
-
+  const location = useLocation();
 
   return (
     <nav className={nav
@@ -23,8 +20,11 @@ function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
       <button
         onClick={() => setNav(!nav)}
         className='navigation__button'>
-          <span className={nav
+
+            <span className={nav
             ? 'navigation__iconMenu'
+              + (location.pathname === PATHS.MAIN_PAGE
+              ? ' navigation__iconMenu_white' : '')
             : 'navigation__iconMenu navigation__iconMenu_active'}></span>
 
       </button>
@@ -35,9 +35,11 @@ function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
         <ul className='navigation__list'>
           <li className='navigation__item navigation__item_to-main'>
             <NavLink
-              className='navigation__link'
+              className={'navigation__link'
+              + (location.pathname === PATHS.MAIN_PAGE
+                ? ' navigation__link_light' : '')}
               activeClassName='navigation__link_active'
-              to={MAIN_PAGE_PATH}
+              to={PATHS.MAIN_PAGE}
               exact
               onClick={() => setNav(!nav)}
             >
@@ -47,9 +49,11 @@ function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
 
           <li className='navigation__item'>
             <NavLink
-              className='navigation__link'
+              className={'navigation__link'
+              + (location.pathname === PATHS.MAIN_PAGE
+                ? ' navigation__link_light' : '')}
               activeClassName='navigation__link_active'
-              to={MOVIES_PAGE_PATH}
+              to={PATHS.MOVIES}
               onClick={() => setNav(!nav)}
             >
               Фильмы
@@ -58,9 +62,11 @@ function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
 
           <li className='navigation__item'>
             <NavLink
-              className='navigation__link'
+              className={'navigation__link'
+              + (location.pathname === PATHS.MAIN_PAGE
+                ? ' navigation__link_light' : '')}
               activeClassName='navigation__link_active'
-              to={SAVED_MOVIES_PAGE_PATH}
+              to={PATHS.SAVED_MOVIES}
               onClick={() => setNav(!nav)}
             >
               Сохранённые фильмы
@@ -69,9 +75,11 @@ function Navigation({ theme, isOpenMenu, onCloseMenu, isLoggedin}) {
         </ul>
 
         <NavLink
-          className='navigation__link navigation__link_account'
+          className={'navigation__link navigation__link_account'
+          + (location.pathname === PATHS.MAIN_PAGE
+            ? ' navigation__link_light' : '')}
           activeClassName='navigation__link_account_active'
-          to={USER_PAGE_PATH}
+          to={PATHS.USER_PAGE}
           onClick={() => setNav(!nav)}
         >
           <p className='navigation__text'>Аккаунт</p>

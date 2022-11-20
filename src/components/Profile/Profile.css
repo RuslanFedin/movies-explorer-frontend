@@ -36,6 +36,26 @@
   color: #000;
 }
 
+.profile__input {
+  border: none;
+  outline: none;
+  text-align: end;
+  background: none;
+}
+
+.profile__input_error {
+  position: relative;
+  top: 30px;
+  text-align: center;
+  color: #FF004C;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.profile__input_success-message {
+  color: #2BE080;
+}
+
 .profile__line {
   margin: 0;
   margin-top: 16px;
@@ -56,6 +76,19 @@
   transition: all 0.3s ease-in-out;
 }
 
+.profile__button_save {
+  width: 410px;
+  height: 45px;
+  color: #fff;
+  background-color: #3456F3;
+  border-radius: 3px;
+}
+
+.profile__button_save:disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .profile__button:hover {
   opacity: 0.6;
   transition: all 0.3s ease-in-out;
@@ -64,6 +97,10 @@
 .profile__button_accent {
   color: #EE3465;
   margin-top: 16px;
+}
+
+.profile__button_hidden {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -78,6 +115,14 @@
   .profile__button {
     margin-top: 212px;
   }
+
+.profile__button_save {
+  width: 410px;
+  height: 45px;
+  background-color: #3456F3;
+  color: #fff;
+  border-radius: 3px;
+}
 
   .profile__button_accent {
     margin-top: 16px;

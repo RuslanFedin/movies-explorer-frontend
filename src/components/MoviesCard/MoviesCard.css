@@ -6,6 +6,10 @@
   line-height: 0;
 }
 
+.movies-card__intro {
+  width: 85%;
+}
+
 .movies-card__header {
   padding: 14px;
   display: flex;
@@ -19,6 +23,9 @@
   font-size: 15px;
   line-height: 18px;
   color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .movie-card__time {
@@ -74,9 +81,9 @@
 
 .movies-card__image {
   width: 100%;
+  aspect-ratio: 16/9;
   object-fit: cover;
-  background-position: center;
-  background-size: cover;
+  object-position: center;
 }
 
 @media screen and (max-width: 768px) {

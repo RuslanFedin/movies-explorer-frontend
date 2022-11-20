@@ -13,6 +13,10 @@
   background-color: #465DFF;
 }
 
+.header_hidden {
+  display: none;
+}
+
 .header__logo {
   height: 38px;
   width:  38px;

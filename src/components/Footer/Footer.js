@@ -2,9 +2,10 @@ import './Footer.css';
 
 import React from "react";
 import { GITHUB_PAGE } from '../../utils/constants';
-import {YA_PRACTICUM_PAGE} from '../../utils/constants';
+import { YA_PRACTICUM_PAGE } from '../../utils/constants';
 
 function Footer() {
+
   return (
     <footer className='footer'>
       <div className='footer__content'>

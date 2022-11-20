@@ -26,6 +26,7 @@
 
 .form__label {
   margin: 0;
+  height: 12px;
   padding-bottom: 10px;
   display: block;
   font-weight: 400;
